@@ -6,4 +6,5 @@
 
 /* Cropped official Annoncia lockup from the supplied reference artwork. */
 .brand img{width:174px;height:54px;border-radius:0;object-fit:contain;object-position:left center}
+.hero-shade{background:linear-gradient(90deg,#f7fafc 0%,#f7fafc 31%,rgba(247,250,252,.96) 38%,rgba(247,250,252,.25) 60%,rgba(247,250,252,0) 100%)}
 @media(max-width:520px){.brand img{width:142px;height:46px}.modal-card img{width:150px;height:auto;border-radius:0}}
