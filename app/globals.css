@@ -131,8 +131,8 @@ p { text-wrap: pretty; }
 .page-hero h1 { margin: 18px 0 26px; color: var(--navy); font-size: clamp(2.5rem, 4.8vw, 4.4rem); font-weight: 900; text-transform: uppercase; }
 .page-hero .lead { max-width: 610px; }
 .page-hero .lead p { margin: 0 0 14px; }
-.control-diagram { display: block; min-height: 0; overflow: visible; border: 0; border-radius: 0; background: transparent; }
-.control-diagram-image { display: block; width: 100%; height: auto; object-fit: contain; mix-blend-mode: multiply; -webkit-mask-image: linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 5%, #000 95%, transparent 100%); -webkit-mask-composite: source-in; mask-image: linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 5%, #000 95%, transparent 100%); mask-composite: intersect; }
+.control-diagram { display: block; min-height: 0; overflow: visible; border: 0; border-radius: 0; outline: 0; background: transparent; box-shadow: none; }
+.control-diagram-image { display: block; width: 100%; height: auto; object-fit: contain; mix-blend-mode: multiply; -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.46) 4%, #000 11%, #000 89%, rgba(0,0,0,.46) 96%, transparent 100%), linear-gradient(to bottom, transparent 0%, rgba(0,0,0,.5) 4%, #000 11%, #000 89%, rgba(0,0,0,.5) 96%, transparent 100%); -webkit-mask-composite: source-in; mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.46) 4%, #000 11%, #000 89%, rgba(0,0,0,.46) 96%, transparent 100%), linear-gradient(to bottom, transparent 0%, rgba(0,0,0,.5) 4%, #000 11%, #000 89%, rgba(0,0,0,.5) 96%, transparent 100%); mask-composite: intersect; }
 
 .flow-band { background: var(--sand); }
 .flow-list { display: grid; gap: 12px; }
@@ -362,28 +362,20 @@ p { text-wrap: pretty; }
 .hero-background { object-position: center; }
 .content-card img, .scenario-card img, .source-preview img, .flow-row > img, .tech-grid img, .protection-card > img, .scope-card > img { border-radius: 18px; }
 .parallel-card > img { border-radius: 0; background: transparent; }
-.flood-control-diagram { position: relative; display: grid; min-height: 470px; place-items: center; isolation: isolate; }
-.diagram-core { position: relative; z-index: 3; width: 230px; height: 230px; object-fit: contain; filter: drop-shadow(0 24px 30px rgba(11,88,196,.2)); animation: float-mark 4.6s ease-in-out infinite; }
-.diagram-ring { position: absolute; z-index: 1; border: 1px solid rgba(18,105,230,.2); border-radius: 999px; }
-.ring-one { width: 330px; height: 330px; }
-.ring-two { width: 440px; height: 440px; border-style: dashed; animation: spin-ring 32s linear infinite; }
-.diagram-node { position: absolute; z-index: 4; display: grid; width: 112px; justify-items: center; gap: 5px; border: 1px solid var(--line); border-radius: 22px; background: rgba(255,255,255,.94); padding: 12px; box-shadow: var(--shadow-soft); color: var(--ink); font-size: 11px; font-weight: 800; text-transform: uppercase; }
-.diagram-node img { width: 62px; height: 52px; border-radius: 12px; object-fit: contain; }
-.node-a { top: 40px; right: 54px; }
-.node-b { bottom: 36px; right: 40px; }
-.node-c { bottom: 68px; left: 28px; }
-@keyframes spin-ring { to { transform: rotate(360deg); } }
-@keyframes float-mark { 50% { transform: translateY(-9px); } }
+.architecture-page-hero .page-hero-grid { grid-template-columns: minmax(360px,.82fr) minmax(0,1.18fr); gap: clamp(28px, 4vw, 52px); }
+.architecture-visual { width: min(100%, 760px); min-width: 0; justify-self: center; }
 @media (max-width: 700px) {
   .site-header.is-transparent { background: rgba(239,246,250,.82); backdrop-filter: blur(18px) saturate(135%); }
   .hero-background { object-position: center top; }
   .hero-overlay { background: linear-gradient(180deg, rgba(239,246,250,.99) 0%, rgba(239,246,250,.92) 41%, rgba(239,246,250,.5) 57%, rgba(239,246,250,.08) 76%, rgba(239,246,250,.02) 100%); }
-  .flood-control-diagram { min-height: 390px; transform: scale(.9); }
-  .diagram-core { width: 185px; height: 185px; }
-  .ring-one { width: 270px; height: 270px; }
-  .ring-two { width: 350px; height: 350px; }
-  .diagram-node { width: 94px; }
-  .node-a { right: 4px; }
-  .node-b { right: 0; }
-  .node-c { left: 0; }
+  .architecture-visual { min-height: 0; }
+}
+
+@media (max-width: 960px) {
+  .architecture-page-hero .page-hero-grid { grid-template-columns: minmax(0,1fr); }
+  .architecture-visual { width: min(100%, 820px); }
+}
+
+@media (max-width: 700px) {
+  .architecture-visual { width: 100%; margin-inline: 0; }
 }

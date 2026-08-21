@@ -52,7 +52,7 @@ const partnerBadges = [
 export default function Architecture() {
   return <main>
     <SiteHeader active="architecture" />
-    <section className="page-hero"><div className="shell page-hero-grid"><div><p className="kicker accent">Architecture &amp; sécurité</p><h1>Un appel.<br />Plusieurs couches de contrôle.</h1><div className="lead"><p>Le Voicebot Inondations combine infrastructure télécom, analyse du signal, moteur conversationnel contrôlé et règles déterministes.</p><p>Chaque étape <strong>vérifie la précédente</strong> avant qu’une réponse ou une action ne soit autorisée.</p></div></div><ControlDiagram /></div></section>
+    <section className="page-hero architecture-page-hero"><div className="shell page-hero-grid"><div><p className="kicker accent">Architecture &amp; sécurité</p><h1>Un appel.<br />Plusieurs couches de contrôle.</h1><div className="lead"><p>Le Voicebot Inondations combine infrastructure télécom, analyse du signal, moteur conversationnel contrôlé et règles déterministes.</p><p>Chaque étape <strong>vérifie la précédente</strong> avant qu’une réponse ou une action ne soit autorisée.</p></div></div><ControlDiagram /></div></section>
 
     <section className="band flow-band"><div className="shell"><PageIntro kicker="Flux opérationnel" title={<>De l’appel à la décision, en sept étapes</>}><p>Chaque étape est un point de contrôle distinct. Aucune ne fait confiance à la précédente sur parole.</p></PageIntro><div className="flow-list">{flow.map(([n, icon, title, text, meta]) => <article className="flow-row" key={n}><b>{n}</b><img src={assetPath(icon)} alt="" /><div><h3>{title}</h3><p>{text}</p></div><small>{meta}</small></article>)}</div></div></section>
 
@@ -74,5 +74,5 @@ export default function Architecture() {
 }
 
 function ControlDiagram() {
-  return <div className="control-diagram flood-control-diagram" aria-label="Architecture sécurisée à trois couches"><div className="diagram-ring ring-one" /><div className="diagram-ring ring-two" /><img className="diagram-core" src={assetPath("/flood-logo.png")} alt="Protection du canal d’information Inondations" /><div className="diagram-node node-a"><img src={assetPath("/icons/flood/headset.png")} alt="" /><span>Audio</span></div><div className="diagram-node node-b"><img src={assetPath("/icons/flood/chat.png")} alt="" /><span>Dialogue</span></div><div className="diagram-node node-c"><img src={assetPath("/icons/flood/lock.png")} alt="" /><span>Contrôle</span></div></div>;
+  return <div className="control-diagram architecture-visual"><img className="control-diagram-image" src={assetPath("/visuals/architecture-security-layers.png")} alt="Architecture sécurisée du Voicebot Inondations : accès téléphonique, analyse du signal audio, sécurité conversationnelle, règles et connaissances, puis réponse autorisée." /></div>;
 }
