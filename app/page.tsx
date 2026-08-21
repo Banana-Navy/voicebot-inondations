@@ -78,7 +78,7 @@ export default function Home() {
               <article><img src={assetPath("/icons/flood/bell.png")} alt="" /><span>Alerte<br />actualisable</span></article>
               <article><img src={assetPath("/icons/flood/lock.png")} alt="" /><span>Contrôle<br />et sécurité</span></article>
             </div>
-            <div className="hero-actions" id="test"><button className="button button-primary button-large" onClick={startCall}><img src={assetPath("/icons/flood/phone.png")} alt="" />Tester le voicebot</button><a className="text-link" href="#guidance">Comment ça fonctionne</a></div>
+            <div className="hero-actions" id="test"><button className="button button-primary button-large" onClick={startCall}><img src={assetPath("/icons/flood/phone.png")} alt="" />Tester le voicebot</button></div>
           </div>
         </div>
         <div className="hero-trust shell"><img src={assetPath("/icons/flood/water-shield.png")} alt="" /><span>Ce test ne contacte pas les secours. Danger immédiat : 112. Aide non urgente des pompiers : 1722.</span></div>
