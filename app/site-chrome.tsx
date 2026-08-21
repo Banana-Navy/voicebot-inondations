@@ -7,7 +7,7 @@ export function SiteHeader({ onCall }: { onCall?: () => void }) {
   return <header className="site-header"><div className="shell header-inner">
     <a className="brand" href={assetPath("/")}>
       <img src={assetPath("/flood-logo.png")} alt="Logo Voicebot Inondations" />
-      <span className="brand-copy"><strong>ANNONCIA</strong><small>VOICEBOT INONDATIONS</small></span>
+      <span className="brand-copy"><strong>VOICEBOT INNONDATIONS</strong></span>
     </a>
     <nav className={open?"open":""}><a href={assetPath("/#reflexes")}>Réflexes</a><a href={assetPath("/#utilite")}>Utilité</a><a href={assetPath("/incidents/")}>Inondations passées</a><a href={assetPath("/sources/")}>Sources</a></nav>
     <button className="header-call" onClick={onCall}>☎ <span>Tester</span></button>
