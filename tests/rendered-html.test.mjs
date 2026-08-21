@@ -33,7 +33,7 @@ test("renders the French flood landing with the Canicule header and footer infor
   assert.match(html, /ALERTEZ\./);
   assert.match(html, /PROTÉGEZ\./);
   assert.match(html, /<b>VOICEBOT<\/b><em>INNONDATIONS<\/em>/);
-  assert.match(html, /Appeler quelqu’un/);
+  assert.doesNotMatch(html, /Appeler quelqu’un/);
   assert.match(html, /href="\/architecture"[^>]*>Technologie<\/a>/);
   assert.match(html, /Trusted voice agents/);
   assert.match(html, /Protection anti-hallucination/);

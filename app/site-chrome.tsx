@@ -12,7 +12,6 @@ type HeaderProps = {
 
 const links = [
   { href: "/", label: "Accueil", key: "home" },
-  { href: "/#test", label: "Appeler quelqu’un", key: null },
   { href: "/architecture", label: "Technologie", key: "architecture" },
   { href: "/sources", label: "Sources", key: "sources" },
 ] as const;
