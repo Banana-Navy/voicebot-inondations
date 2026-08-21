@@ -1,0 +1,10 @@
+import { SiteFooter, SiteHeader } from "../site-chrome";
+const sources=[
+  ["Centre de Crise National","Consignes avant, pendant et après une inondation pluviale : préparation, 112/1722, évacuation et retour.","https://centredecrise.be/fr/risques-en-belgique/risques-naturels/inondation-pluviale-eaux-de-ruissellement"],
+  ["SPW Environnement","Consignes en cas de crue : rester à l’écoute, aider les personnes vulnérables, éviter les routes inondées et préparer l’évacuation.","https://environnement.wallonie.be/home/gestion-environnementale/risques-climatiques/inondations/gestion-de-crise/que-faire-en-cas-de-crue.html"],
+  ["BE-Alert","Canal officiel d’alerte de la population par SMS, appel vocal ou e-mail. Inscription gratuite.","https://www.be-alert.be/fr"],
+  ["Wallonie · bilan 2021","Chiffres-clés officiels et bilan des inondations de juillet 2021.","https://www.wallonie.be/sites/default/files/2022-07/%5BCP%5D%20-%20Inondations%20de%20juillet%202021%20-%20Bilan%20et%20perspectives.pdf"],
+  ["Wallonie · événements reconnus","Registre officiel des calamités naturelles publiques reconnues par année et commune.","https://interieur.wallonie.be/home/calamites/reconnaissance-d-une-calamite-naturelle-publique/evenements-reconnus.html"],
+  ["Belgium.be","Prévention et démarches en cas de dégâts causés par une inondation.","https://www.belgium.be/fr/logement/problemes_de_logement/catastrophes_naturelles/inondations"]
+];
+export default function Sources(){return <main><div className="emergency-strip">Les consignes des autorités priment toujours sur ce prototype.</div><SiteHeader/><section className="subhero"><div className="shell"><p className="eyebrow">Transparence documentaire</p><h1>Sources officielles.</h1><p className="intro">Les contenus de sécurité et les exemples historiques du site renvoient vers des organismes publics belges.</p></div></section><section className="band light"><div className="shell source-grid">{sources.map(([name,desc,url])=><article className="source-card" key={name}><h2>{name}</h2><p>{desc}</p><a href={url} target="_blank" rel="noreferrer">Consulter la source ↗</a></article>)}</div></section><SiteFooter/></main>}
