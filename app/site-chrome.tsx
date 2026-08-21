@@ -5,7 +5,10 @@ import { assetPath } from "./asset-path";
 export function SiteHeader({ onCall }: { onCall?: () => void }) {
   const [open,setOpen]=useState(false);
   return <header className="site-header"><div className="shell header-inner">
-    <a className="brand" href={assetPath("/")}><img src={assetPath("/annoncia-logo.png")} alt="Annoncia Voicebot" /></a>
+    <a className="brand" href={assetPath("/")}>
+      <img src={assetPath("/flood-logo.png")} alt="Logo Voicebot Inondations" />
+      <span className="brand-copy"><strong>ANNONCIA</strong><small>VOICEBOT INONDATIONS</small></span>
+    </a>
     <nav className={open?"open":""}><a href={assetPath("/#reflexes")}>Réflexes</a><a href={assetPath("/#utilite")}>Utilité</a><a href={assetPath("/incidents/")}>Inondations passées</a><a href={assetPath("/sources/")}>Sources</a></nav>
     <button className="header-call" onClick={onCall}>☎ <span>Tester</span></button>
     <button className="menu" onClick={()=>setOpen(!open)} aria-label="Ouvrir le menu">☰</button>
