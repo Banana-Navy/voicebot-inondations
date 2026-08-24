@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 async function render(pathname = "/") {
@@ -28,7 +29,7 @@ test("renders the French flood landing with the Canicule header and footer infor
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>Voicebot Inondations \| Annoncia<\/title>/i);
+  assert.match(html, /<title>Voicebot Inondations<\/title>/i);
   assert.match(html, /INFORMEZ\./);
   assert.match(html, /ALERTEZ\./);
   assert.match(html, /PROTÉGEZ\./);
@@ -56,4 +57,23 @@ test("renders the complete Canicule technology architecture adapted to floods", 
   assert.match(html, /Ce qu’on nous demande le plus/);
   assert.match(html, /Protection anti-hallucination/);
   assert.match(html, /Marc-Antoine Cajot/);
+});
+
+test("keeps the active voicebot name and pronunciation in French", async () => {
+  const config = JSON.parse(await readFile(new URL("../config/elevenlabs-agent.json", import.meta.url), "utf8"));
+  const dictionary = JSON.parse(await readFile(new URL("../agent/pronunciation-rules.json", import.meta.url), "utf8"));
+  const prompt = await readFile(new URL("../agent/system-prompt.md", import.meta.url), "utf8");
+
+  assert.equal(config.language, "fr");
+  assert.equal(config.name, "Voicebot Inondations FR");
+  assert.equal(config.pronunciation_dictionary.id, "NpX7ibay1gXIWTPQfCdr");
+  assert.deepEqual(dictionary.rules, [{
+    string_to_replace: "Voicebot",
+    case_sensitive: false,
+    word_boundaries: true,
+    type: "alias",
+    alias: "voïce-botte",
+  }]);
+  assert.match(prompt, /diction entièrement française, sans accent anglais/);
+  assert.doesNotMatch(prompt, /Annoncia/i);
 });

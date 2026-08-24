@@ -1,6 +1,6 @@
 # Voicebot Inondations
 
-Landing page française et configuration du voicebot Annoncia Inondations.
+Landing page française et configuration du Voicebot Inondations.
 
 ## Contenu
 

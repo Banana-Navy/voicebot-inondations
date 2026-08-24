@@ -4,7 +4,7 @@ import "./globals.css";
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export const metadata: Metadata = {
-  title: "Voicebot Inondations | Annoncia",
+  title: "Voicebot Inondations",
   description: "Une information vocale claire avant, pendant et après une inondation.",
   icons: {
     icon: [

@@ -1,0 +1,13 @@
+{
+  "name": "voicebot-inondations-fr",
+  "description": "Prononciation française du nom Voicebot Inondations.",
+  "rules": [
+    {
+      "string_to_replace": "Voicebot",
+      "case_sensitive": false,
+      "word_boundaries": true,
+      "type": "alias",
+      "alias": "voïce-botte"
+    }
+  ]
+}

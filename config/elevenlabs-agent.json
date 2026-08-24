@@ -1,6 +1,10 @@
 {
   "agent_id": "agent_4301m0hx235sf249h7gznvw3n9bg",
-  "name": "Annoncia — Voicebot Inondations FR",
+  "name": "Voicebot Inondations FR",
   "language": "fr",
+  "pronunciation_dictionary": {
+    "id": "NpX7ibay1gXIWTPQfCdr",
+    "version_id": "LqWAJbNShyKytibbDmuY"
+  },
   "phone_number_attached": false
 }
