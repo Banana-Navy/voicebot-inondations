@@ -12,11 +12,10 @@
     "start": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext start",
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
-    "db:generate": "drizzle-kit generate"
-    ,"create:agent": "node scripts/create-elevenlabs-agent.mjs"
+    "db:generate": "drizzle-kit generate",
+    "create:agent": "node scripts/create-elevenlabs-agent.mjs"
   },
   "dependencies": {
-    "@elevenlabs/client": "^1.12.0",
     "drizzle-orm": "0.45.2",
     "next": "16.2.6",
     "react": "19.2.6",

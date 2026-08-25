@@ -35,6 +35,9 @@ test("renders the French flood landing with the Canicule header and footer infor
   assert.match(html, /PROTÉGEZ\./);
   assert.match(html, /<b>VOICEBOT<\/b><em>INNONDATIONS<\/em>/);
   assert.doesNotMatch(html, /Appeler quelqu’un/);
+  assert.match(html, /href="tel:\+3271499817"/);
+  assert.match(html, /Appeler \+3271499817/);
+  assert.doesNotMatch(html, /Tester le voicebot/i);
   assert.match(html, /href="\/architecture"[^>]*>Technologie<\/a>/);
   assert.match(html, /Trusted voice agents/);
   assert.match(html, /Protection anti-hallucination/);
@@ -57,6 +60,8 @@ test("renders the complete Canicule technology architecture adapted to floods", 
   assert.match(html, /Ce qu’on nous demande le plus/);
   assert.match(html, /Protection anti-hallucination/);
   assert.match(html, /Marc-Antoine Cajot/);
+  assert.match(html, /href="tel:\+3271499817"/);
+  assert.match(html, /Appeler \+3271499817/);
 });
 
 test("keeps the active voicebot name and pronunciation in French", async () => {

@@ -1,11 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import { PageIntro, SiteFooter, SiteHeader } from "./site-chrome";
 import { assetPath } from "./asset-path";
-
-const AGENT_ID = "agent_4301m0hx235sf249h7gznvw3n9bg";
+import { VOICEBOT_PHONE_HREF, VOICEBOT_PHONE_LABEL } from "./voicebot-phone";
 
 const reflexes = [
   ["/icons/flood/sandbags.png", "Protégez", "Surélevez les objets utiles, protégez les ouvertures et mettez les documents importants à l’abri."],
@@ -30,10 +29,6 @@ const sources = [
 ];
 
 export default function Home() {
-  const [panelOpen, setPanelOpen] = useState(false);
-  const [callState, setCallState] = useState<"idle" | "connecting" | "connected" | "error">("idle");
-  const conversation = useRef<{ endSession: () => Promise<void> } | null>(null);
-
   useEffect(() => {
     const nodes = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
     const observer = new IntersectionObserver((entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.setAttribute("data-visible", "true")), { threshold: 0.12 });
@@ -44,27 +39,10 @@ export default function Home() {
     return () => { observer.disconnect(); window.removeEventListener("scroll", onScroll); };
   }, []);
 
-  async function startCall() {
-    setPanelOpen(true);
-    setCallState("connecting");
-    try {
-      const { Conversation } = await import("@elevenlabs/client");
-      await navigator.mediaDevices.getUserMedia({ audio: true });
-      conversation.current = await Conversation.startSession({ agentId: AGENT_ID, onConnect: () => setCallState("connected"), onDisconnect: () => setCallState("idle"), onError: () => setCallState("error") });
-    } catch { setCallState("error"); }
-  }
-
-  async function endCall() {
-    await conversation.current?.endSession();
-    conversation.current = null;
-    setCallState("idle");
-    setPanelOpen(false);
-  }
-
   return <main>
     <div className="safety-strip">Prototype d’information — en cas de danger immédiat, appelez le <strong>112</strong> · aide non urgente : <strong>1722</strong></div>
     <div className="home-stage">
-      <SiteHeader active="home" onTest={startCall} transparent />
+      <SiteHeader active="home" transparent />
       <section className="home-hero" id="top">
         <picture><source media="(max-width: 700px)" srcSet={assetPath("/visuals/flood-hero-mobile-art.png")} /><img className="hero-background" src={assetPath("/visuals/flood-desktop-clean.png")} alt="Maison entourée par les eaux sous un ciel d’orage, illustration low-poly" /></picture>
         <div className="hero-overlay" />
@@ -78,10 +56,10 @@ export default function Home() {
               <article><img src={assetPath("/icons/flood/bell.png")} alt="" /><span>Alerte<br />actualisable</span></article>
               <article><img src={assetPath("/icons/flood/lock.png")} alt="" /><span>Contrôle<br />et sécurité</span></article>
             </div>
-            <div className="hero-actions" id="test"><button className="button button-primary button-large" onClick={startCall}><img src={assetPath("/icons/flood/phone.png")} alt="" />Tester le voicebot</button></div>
+            <div className="hero-actions" id="test"><a className="button button-primary button-large" href={VOICEBOT_PHONE_HREF}><img src={assetPath("/icons/flood/phone.png")} alt="" />{VOICEBOT_PHONE_LABEL}</a></div>
           </div>
         </div>
-        <div className="hero-trust shell"><img src={assetPath("/icons/flood/water-shield.png")} alt="" /><span>Ce test ne contacte pas les secours. Danger immédiat : 112. Aide non urgente des pompiers : 1722.</span></div>
+        <div className="hero-trust shell"><img src={assetPath("/icons/flood/water-shield.png")} alt="" /><span>Cet appel ne contacte pas les secours. Danger immédiat : 112. Aide non urgente des pompiers : 1722.</span></div>
       </section>
     </div>
 
@@ -113,9 +91,7 @@ export default function Home() {
       </div>
     </section>
 
-    <section className="page-cta"><div className="shell"><div><h2>Écoutez le voicebot maintenant.</h2><p>Vérifiez sa voix, ses limites et sa manière de transmettre les consignes officielles.</p></div><button className="button button-primary button-large" onClick={startCall}><img src={assetPath("/icons/flood/phone.png")} alt="" />Tester le voicebot</button></div></section>
+    <section className="page-cta"><div className="shell"><div><h2>Appelez le voicebot maintenant.</h2><p>Écoutez sa voix, ses limites et sa manière de transmettre les consignes officielles.</p></div><a className="button button-primary button-large" href={VOICEBOT_PHONE_HREF}><img src={assetPath("/icons/flood/phone.png")} alt="" />{VOICEBOT_PHONE_LABEL}</a></div></section>
     <SiteFooter />
-
-    {panelOpen && <div className="call-panel" role="dialog" aria-modal="true" aria-label="Test du voicebot"><button className="panel-backdrop" onClick={endCall} aria-label="Fermer" /><div className="panel-card"><button className="panel-close" onClick={endCall}>Fermer</button><img className="panel-logo" src={assetPath("/flood-logo.png")} alt="" /><p className="kicker accent">VOICEBOT INNONDATIONS</p><h2>{callState === "connecting" ? "Connexion…" : callState === "connected" ? "Je vous écoute" : callState === "error" ? "Connexion indisponible" : "Prêt"}</h2><p>{callState === "error" ? "Vérifiez l’autorisation du microphone et réessayez." : "Parlez naturellement. Vous pouvez interrompre le voicebot."}</p>{callState === "error" ? <button className="button button-primary" onClick={startCall}>Réessayer</button> : <button className="button button-secondary" onClick={endCall}>Terminer le test</button>}<small>Ce test n’est pas un service d’urgence.</small></div></div>}
   </main>;
 }

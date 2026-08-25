@@ -3,10 +3,10 @@
 import Link from "next/link";
 import { useState } from "react";
 import { assetPath } from "./asset-path";
+import { VOICEBOT_PHONE_HREF, VOICEBOT_PHONE_LABEL } from "./voicebot-phone";
 
 type HeaderProps = {
   active?: "home" | "architecture" | "incidents" | "sources";
-  onTest?: () => void;
   transparent?: boolean;
 };
 
@@ -16,7 +16,7 @@ const links = [
   { href: "/sources", label: "Sources", key: "sources" },
 ] as const;
 
-export function SiteHeader({ active, onTest, transparent = false }: HeaderProps) {
+export function SiteHeader({ active, transparent = false }: HeaderProps) {
   const [open, setOpen] = useState(false);
   return (
     <header className={`site-header ${transparent ? "is-transparent" : ""}`}>
@@ -28,11 +28,7 @@ export function SiteHeader({ active, onTest, transparent = false }: HeaderProps)
         <nav className={open ? "is-open" : ""} aria-label="Navigation principale">
           {links.map((link) => <Link key={link.href} className={link.key && active === link.key ? "active" : ""} href={link.href} onClick={() => setOpen(false)}>{link.label}</Link>)}
         </nav>
-        {onTest ? (
-          <button className="button button-primary header-action" aria-label="Appeler le bot" onClick={onTest}><img src={assetPath("/icons/flood/phone.png")} alt="" /><span>Appeler le bot</span></button>
-        ) : (
-          <Link className="button button-primary header-action" aria-label="Appeler le bot" href="/#test"><img src={assetPath("/icons/flood/phone.png")} alt="" /><span>Appeler le bot</span></Link>
-        )}
+        <a className="button button-primary header-action" aria-label={VOICEBOT_PHONE_LABEL} href={VOICEBOT_PHONE_HREF}><img src={assetPath("/icons/flood/phone.png")} alt="" /><span>{VOICEBOT_PHONE_LABEL}</span></a>
         <button className="menu-button" type="button" aria-label="Ouvrir le menu" aria-expanded={open} onClick={() => setOpen(!open)}><span /><span /></button>
       </div>
     </header>
@@ -76,5 +72,5 @@ export function PageIntro({ kicker, title, children }: { kicker: string; title: 
 }
 
 export function PageCta() {
-  return <section className="page-cta"><div className="shell"><div><h2>Parlez au voicebot, maintenant.</h2><p>Une démonstration dure moins d&apos;une minute : vous lancez l&apos;échange et le VoiceBot vous présente les bons réflexes face aux inondations.</p></div><Link className="button button-primary" href="/#test"><img src={assetPath("/icons/flood/phone.png")} alt="" />Appeler le bot</Link></div></section>;
+  return <section className="page-cta"><div className="shell"><div><h2>Parlez au voicebot, maintenant.</h2><p>Une démonstration dure moins d&apos;une minute : vous lancez l&apos;échange et le VoiceBot vous présente les bons réflexes face aux inondations.</p></div><a className="button button-primary" href={VOICEBOT_PHONE_HREF}><img src={assetPath("/icons/flood/phone.png")} alt="" />{VOICEBOT_PHONE_LABEL}</a></div></section>;
 }
